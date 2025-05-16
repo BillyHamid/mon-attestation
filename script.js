@@ -6,8 +6,8 @@ async function generatePDF(name) {
     const pages = pdfDoc.getPages();
     const firstPage = pages[0];
 
-    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-    const fontSize = 20;
+const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+    const fontSize = 36;
     const { width } = firstPage.getSize();
 
     firstPage.drawText(name, {

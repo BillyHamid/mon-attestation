@@ -1,17 +1,94 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Générateur d'attestation</title>
+  <meta charset="UTF-8" />
+  <title>Générateur d'attestation</title>
+  <style>
+    /* Reset simple */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 25px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+    }
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      outline: none;
+      transition: box-shadow 0.3s ease;
+    }
+    input[type="text"]:focus {
+      box-shadow: 0 0 8px #ffdd59;
+    }
+    button {
+      background: #ffdd59;
+      color: #333;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #e6c83e;
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+        width: 90%;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
     <h2>Générer votre attestation</h2>
     <form id="form">
-        <label for="name">Nom et prénom :</label><br>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Télécharger l'attestation</button>
+      <label for="name">Nom et prénom :</label>
+      <input type="text" id="name" name="name" placeholder="Entrez votre nom complet" required />
+      <button type="submit">Télécharger l'attestation</button>
     </form>
+  </div>
 
-    <script type="module" src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
