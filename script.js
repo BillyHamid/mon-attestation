@@ -1,7 +1,7 @@
 import { PDFDocument, rgb, StandardFonts } from 'https://cdn.skypack.dev/pdf-lib';
 
 async function generatePDF(name) {
-  const existingPdfBytes = await fetch('1.pdf').then(res => res.arrayBuffer());
+  const existingPdfBytes = await fetch('Attestation Formation IA Orange.pdf').then(res => res.arrayBuffer());
   const pdfDoc = await PDFDocument.load(existingPdfBytes);
   const pages = pdfDoc.getPages();
   const firstPage = pages[0];
