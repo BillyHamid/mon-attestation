@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Générateur d'attestation</title>
   <style>
-    /* Reset simple */
     * {
       box-sizing: border-box;
     }
@@ -14,10 +14,10 @@
       color: #fff;
       margin: 0;
       padding: 0;
-      height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
     .container {
       background: rgba(255, 255, 255, 0.1);
@@ -32,6 +32,7 @@
       margin-bottom: 25px;
       font-weight: 700;
       letter-spacing: 1.2px;
+      font-size: 1.8rem;
     }
     label {
       display: block;
@@ -48,10 +49,6 @@
       font-size: 1rem;
       margin-bottom: 20px;
       outline: none;
-      transition: box-shadow 0.3s ease;
-    }
-    input[type="text"]:focus {
-      box-shadow: 0 0 8px #ffdd59;
     }
     button {
       background: #ffdd59;
@@ -68,13 +65,16 @@
     button:hover {
       background-color: #e6c83e;
     }
-    @media (max-width: 480px) {
+    @media screen and (max-width: 480px) {
       .container {
         padding: 20px;
         width: 90%;
       }
       h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+      }
+      label, input, button {
+        font-size: 1rem;
       }
     }
   </style>
