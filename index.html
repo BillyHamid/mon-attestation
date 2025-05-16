@@ -5,12 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Générateur d'attestation</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #ffffff;
+      background-color: #fff;
       margin: 0;
       padding: 0;
       display: flex;
@@ -18,96 +15,71 @@
       align-items: center;
       min-height: 100vh;
     }
-
     .container {
       background: #fff;
+      padding: 40px;
       border-radius: 12px;
-      padding: 40px 30px;
-      width: 100%;
-      max-width: 500px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
       text-align: center;
     }
-
-    .logo {
-      width: 200px;
-      margin-bottom: 30px;
-    }
-
     h2 {
       margin-bottom: 20px;
-      font-size: 1.7rem;
+      font-size: 1.6rem;
       color: #333;
     }
-
-    label {
-      display: block;
-      text-align: left;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #444;
-      margin: 15px 0 5px;
-    }
-
-    input[type="text"] {
+    input[type="text"],
+    input[type="password"] {
       width: 100%;
-      padding: 12px 15px;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
       font-size: 1rem;
       border-radius: 8px;
-      border: 1px solid #ccc;
-      margin-bottom: 20px;
-    }
-
-    button {
-      width: 100%;
-      background-color: #007bff;
-      color: white;
-      font-size: 1.1rem;
-      font-weight: bold;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      width: 100%;
     }
-
     button:hover {
-      background-color: #0056b3;
-    }
-
-    @media screen and (max-width: 480px) {
-      .container {
-        padding: 20px;
-      }
-
-      .logo {
-        width: 200px;
-      }
-
-      h2 {
-        font-size: 1.4rem;
-      }
-
-      label, input, button {
-        font-size: 1rem;
-      }
+      background: #0056b3;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="logo-box.png" alt="Logo de l'organisation" class="logo" />
+  <div class="container" id="auth">
+    <h2>Accès sécurisé</h2>
+    <input type="password" id="password" placeholder="Entrez le mot de passe" />
+    <button onclick="checkPassword()">Valider</button>
+  </div>
 
+  <div class="container" id="main-content" style="display:none;">
     <h2>Générer votre attestation</h2>
-
     <form id="form">
-      <label for="name">Nom et prénom :</label>
-      <input type="text" id="name" name="name" placeholder="Entrez votre nom complet" required />
-
+      <input type="text" id="name" name="name" placeholder="Nom et prénom" required />
       <button type="submit">Télécharger l'attestation</button>
     </form>
   </div>
 
   <script type="module" src="script.js"></script>
+  <script>
+    function checkPassword() {
+      const pw = document.getElementById('password').value;
+      const correct = "formation2025"; // 🔐 Modifie ici ton mot de passe
+      if (pw === correct) {
+        document.getElementById("auth").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      } else {
+        alert("Mot de passe incorrect !");
+      }
+    }
+  </script>
 </body>
 </html>
