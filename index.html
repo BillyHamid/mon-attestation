@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Générateur d'attestation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Générateur d'attestation sécurisé</title>
   <style>
     * {
       box-sizing: border-box;
@@ -97,16 +97,16 @@
 </head>
 <body>
 
-  <!-- Zone de mot de passe -->
+  <!-- Auth -->
   <div class="container" id="auth">
     <img src="logo-box.png" alt="Logo de l'organisation" class="logo" />
     <h2>Accès sécurisé</h2>
     <input type="password" id="password" placeholder="Entrez le mot de passe" />
-    <button onclick="checkPassword()">Valider</button>
+    <button id="btnLogin">Valider</button>
   </div>
 
-  <!-- Formulaire principal caché au début -->
-  <div class="container" id="main-content" style="display: none;">
+  <!-- Form -->
+  <div class="container" id="main-content" style="display:none;">
     <img src="logo-box.png" alt="Logo de l'organisation" class="logo" />
     <h2>Générer votre attestation</h2>
     <form id="form">
@@ -116,56 +116,7 @@
     </form>
   </div>
 
-  <!-- Script principal -->
-  <script type="module">
-    import { PDFDocument, rgb, StandardFonts } from 'https://cdn.skypack.dev/pdf-lib';
-
-    async function generatePDF(name) {
-      const existingPdfBytes = await fetch('1.pdf').then(res => res.arrayBuffer());
-      const pdfDoc = await PDFDocument.load(existingPdfBytes);
-      const pages = pdfDoc.getPages();
-      const firstPage = pages[0];
-
-      const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-      const fontSize = 36;
-      const { width } = firstPage.getSize();
-
-      firstPage.drawText(name, {
-        x: width / 2 - font.widthOfTextAtSize(name, fontSize) / 2,
-        y: 370,
-        size: fontSize,
-        font: font,
-        color: rgb(0, 0, 0)
-      });
-
-      const pdfBytes = await pdfDoc.save();
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = `attestation-${name}.pdf`;
-      link.click();
-    }
-
-    document.getElementById('form').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      if (name) {
-        await generatePDF(name);
-      }
-    });
-
-    // 🔐 Contrôle du mot de passe
-    function checkPassword() {
-      const pw = document.getElementById('password').value;
-      const correct = "formation2025"; // Change ce mot de passe si besoin
-      if (pw === correct) {
-        document.getElementById("auth").style.display = "none";
-        document.getElementById("main-content").style.display = "block";
-      } else {
-        alert("Mot de passe incorrect !");
-      }
-    }
-  </script>
-
+  <script src="auth.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
