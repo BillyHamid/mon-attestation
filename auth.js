@@ -1,6 +1,6 @@
 document.getElementById('btnLogin').addEventListener('click', function () {
   const pw = document.getElementById('password').value;
-  const correct = "IA2025"; // Change ici le mot de passe
+  const correct = "ITIL2025"; // Change ici le mot de passe
 
   if (pw === correct) {
     document.getElementById('auth').style.display = 'none';
